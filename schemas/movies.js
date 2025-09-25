@@ -1,5 +1,5 @@
-const z = require("zod") // Para validaciones.
 
+import z from 'zod'
 
 const movieSchema = z.object({
         title: z.string({
@@ -23,18 +23,14 @@ const movieSchema = z.object({
     })
 
 // Creamos el esquema, luego lo invocamos.
-function validateMovie(object){
+export function validateMovie(object){
     return movieSchema.safeParse(object) // Asi es como validamos.
 }
 
 // Creamos el esquema, luego lo invocamos.
-function validatePartialMovie(object){
+export function validatePartialMovie(object){
     // Hace que cada propiedad lo hace de manera parcial.
     // Si no esta alguna propiedad, no pasa nada. Caso contrario, le realiza su validacion.
     return movieSchema.partial().safeParse(object)
 }
 
-module.exports = {
-    validateMovie,
-    validatePartialMovie
-}
